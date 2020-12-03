@@ -18,7 +18,7 @@ require __DIR__.'/auth.php';
 | Basically anyone can access this routes
 |
 */
-Route::get('/', fn() => view('welcome'));
+Route::get('/', fn() => view('welcome'))->name('home');
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +45,6 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'], function(){
         Route::resource('levels', LevelsController::class);
+        Route::resource('streams', StreamsController::class);
 });
 
