@@ -4,19 +4,46 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Auth Routes
+|--------------------------------------------------------------------------
+| Authentication routes of the application
+|
+*/
+require __DIR__.'/auth.php';
+
+/*
+|--------------------------------------------------------------------------
+| General|Public Routes
+|--------------------------------------------------------------------------
+| Basically anyone can access this routes
+|
+*/
+Route::get('/', fn() => view('welcome'));
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated User Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Routes for authenticated users, a default user
+|
+*/
+Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Routes for low level functionality of the system, the most lethal routes I would say
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group([
+    'middleware' => ['verified', 'auth'], 
+    'namespace' => 'Admin', 
+    'prefix' => 'admin',
+    'as' => 'admin.'], function(){
+        Route::resource('levels', LevelsController::class);
 });
 
-Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
