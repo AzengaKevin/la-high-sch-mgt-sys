@@ -48,3 +48,19 @@ Route::group([
         Route::resource('streams', StreamsController::class);
 });
 
+/*
+|--------------------------------------------------------------------------
+| Elevated User Routes
+|--------------------------------------------------------------------------
+|
+| Routes for low level functionality of the system, the most lethal routes I would say
+|
+*/
+
+Route::group([
+    'middleware' => ['verified', 'auth'], 
+    'namespace' => 'User', 
+    'prefix' => 'user',
+    'as' => 'user.'], function(){
+        Route::resource('students', StudentsController::class);
+});

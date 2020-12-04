@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             LevelsTableSeeder::class,
             StreamsTableSeeder::class,
+            StudentSeeder::class,
         ]);
     }
 }

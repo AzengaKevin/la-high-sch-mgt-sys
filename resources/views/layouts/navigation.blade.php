@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.streams.index')" :active="request()->routeIs('admin.streams.index')">
                         {{ __('Streams') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('user.students.index')" :active="request()->routeIs('user.students.index')">
+                        {{ __('Students') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -76,6 +79,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.streams.index')" :active="request()->routeIs('admin.streams.index')">
                 {{ __('Streams') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.students.index')" :active="request()->routeIs('user.students.index')">
+                {{ __('Students') }}
             </x-responsive-nav-link>
         </div>
 
