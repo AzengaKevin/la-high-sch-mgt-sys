@@ -10,4 +10,12 @@ class Subject extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'department_id', 'description'];
+
+    /**
+     * Subject Department Relationship
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

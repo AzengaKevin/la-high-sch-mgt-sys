@@ -18,6 +18,7 @@
                             <tr>
                                 <th class="border border-gray-600 px-3 py-2">ID</th>
                                 <th class="border border-gray-600 px-3 py-2">Name</th>
+                                <th class="border border-gray-600 px-3 py-2">Subjects</th>
                                 <th class="border border-gray-600 px-3 py-2">Description</th>
                                 <th class="border border-gray-600 px-3 py-2">Actions</th>
                             </tr>
@@ -27,6 +28,7 @@
                             <tr>
                                 <td class="border border-gray-600 px-3 py-2">{{ $department->id }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $department->name }}</td>
+                                <td class="border border-gray-600 px-3 py-2">{{ $department->subjects->count() }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $department->description ?? 'Not Available' }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
                                     <button class="px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Level"></button>

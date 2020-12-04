@@ -11,4 +11,12 @@ class Department extends Model
 
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Department Subject relationship
+     */
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
+
 }
