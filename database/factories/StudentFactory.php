@@ -29,7 +29,8 @@ class StudentFactory extends Factory
             'kcpe_grade' => $this->faker->randomElement($array = ['B+', 'A-', 'A']),
             'dob' => $this->faker->date($format = 'Y-m-d', $min = '2000-01-01', $max = '2005-01-01'), 
             'join_date' => $this->faker->date($min = '2016-01-01', $max = '2019-01-01'), 
-            'join_level_id' => $this->faker->randomElement($array = [1, 2, 3, 4])
+            'join_level_id' => $this->faker->randomElement($array = [1, 2, 3, 4]),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
 }

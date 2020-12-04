@@ -5,6 +5,7 @@ namespace Tests\Feature\Users;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Student;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -26,6 +27,7 @@ class StudentCrudTest extends TestCase
     {
         //Arrange
         $studentData = Student::factory()->make()->toArray();
+        $studentData['password'] = Hash::make($studentData['admission_number']);
         
         //Act
         Student::create($studentData);
@@ -40,10 +42,13 @@ class StudentCrudTest extends TestCase
         $this->assertEquals($studentData['admission_number'], $student->admission_number);
         $this->assertEquals($studentData['join_level_id'], $student->join_level_id);
         $this->assertEquals($studentData['stream_id'], $student->stream_id);
+
         // $this->assertEquals($studentData['dob'], $student->dob->format('Y-m-d'));
         $this->assertNotNull($student->dob);
+
         // $this->assertEquals($studentData['join_date'], $student->join_date->format('Y-m-d'));
         $this->assertNotNull($student->join_date);
+        
         $this->assertEquals($studentData['kcpe_marks'], $student->kcpe_marks);
         $this->assertEquals($studentData['kcpe_grade'], $student->kcpe_grade);
     }

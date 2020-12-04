@@ -15,6 +15,18 @@ class Student extends Model
         'kcpe_grade', 'dob', 'join_date', 'join_level_id'
     ];
 
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+
     protected $casts = [
         'join_date' => 'date',
         'dob' => 'date',
