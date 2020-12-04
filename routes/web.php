@@ -46,6 +46,7 @@ Route::group([
     'as' => 'admin.'], function(){
         Route::resource('levels', LevelsController::class);
         Route::resource('streams', StreamsController::class);
+        Route::resource('departments', DepartmentsController::class);
 });
 
 /*
