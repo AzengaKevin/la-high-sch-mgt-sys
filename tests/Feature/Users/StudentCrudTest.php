@@ -20,11 +20,7 @@ class StudentCrudTest extends TestCase
         $this->artisan('db:seed');
     }
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    /** @group students */
     public function test_a_student_can_be_created()
     {
         //Arrange
@@ -51,6 +47,7 @@ class StudentCrudTest extends TestCase
         $this->assertEquals($studentData['kcpe_grade'], $student->kcpe_grade);
     }
 
+    /** @group students */
     public function test_a_student_can_be_updated()
     {
         //Arrange
@@ -67,5 +64,19 @@ class StudentCrudTest extends TestCase
         $this->assertEquals('Mercy Mutai', $student->fresh()->name);
         $this->assertEquals('1997-06-22', $student->fresh()->dob->format('Y-m-d'));
         $this->assertEquals(376, $student->fresh()->kcpe_marks);
+    }
+
+    /** @group students */
+    public function test_a_student_can_be_archived()
+    {
+        //Arrange
+        $student = Student::factory()->create();
+
+        $student->delete();
+
+        $this->assertCount(0, Student::all());
+
+        $this->assertCount(1, Student::withTrashed()->get());
+
     }
 }

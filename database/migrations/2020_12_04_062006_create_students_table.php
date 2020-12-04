@@ -26,6 +26,8 @@ class CreateStudentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('join_level_id')->references('id')->on('levels')->onDelete('cascade');
+
+            $table->softDeletes();
         });
     }
 
