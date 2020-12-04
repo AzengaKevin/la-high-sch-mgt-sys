@@ -27,15 +27,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($students as $student)
+                            @foreach ($students as $index => $student)
                             <tr>
-                                <td class="border border-gray-600 px-3 py-2">{{ $student->id }}</td>
+                                <td class="border border-gray-600 px-3 py-2">{{ $index + 1 }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->admission_number }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->name }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->kcpe_marks }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->kcpe_grade }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->dob->format('Y-m-d') }}</td>
-                                <td class="border border-gray-600 px-3 py-2">{{ '3B' }}</td>
+                                <td class="border border-gray-600 px-3 py-2">{{ $student->joinClass() }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
                                     <button class="px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Student"></button>
                                     <button class="px-2"><img src="{{ asset('icons/trash.svg') }}" alt="Delete Student"></button>
@@ -44,8 +44,10 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                    {{ $students->links() }}
+                    
+                    <div class="py-2">
+                        {{ $students->links() }}
+                    </div>
                     @else
                     <div class="bg-blue-200 text-blue-700 px-3 py-2 rounded flex items-center">
                         <img width="32" src="{{ asset('/icons/info.svg') }}" alt="Info Icon">

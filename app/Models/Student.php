@@ -19,4 +19,26 @@ class Student extends Model
         'join_date' => 'date',
         'dob' => 'date',
     ];
+    
+    
+    /**
+     * A relationship to the class level at which the student joined
+     */
+    public function joinLevel()
+    {
+        return $this->belongsTo(Level::class, 'join_level_id'); 
+    }
+
+    /**
+     * A relationship to which the student currently is
+     */
+    public function stream()
+    {
+        return $this->belongsTo(Stream::class);
+    }
+
+    public function joinClass() : string 
+    {
+        return $this->joinLevel->numeric . ' ' . $this->stream->letter;
+    }
 }
