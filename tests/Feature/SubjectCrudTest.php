@@ -14,12 +14,18 @@ class SubjectCrudTest extends TestCase
     /** @group subjects */
     public function test_a_subject_can_be_created()
     {
+        //Arrange
+        $this->artisan('db:seed --class=DepartmentSeeder');
+
+        //Act
         Subject::create([
             'name' => 'Mathematics',
             'slug' => 'maths',
+            'department_id' => (rand() % 6) + 1,
             'description' => 'My favourite',
         ]);
 
+        //Assert
         $this->assertCount(1, Subject::all());
 
         $subject = Subject::first();

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             LevelsTableSeeder::class,
             StreamsTableSeeder::class,
             StudentSeeder::class,
+            DepartmentSeeder::class,
+            SubjectsSeeder::class
         ]);
     }
 }
