@@ -50,4 +50,22 @@ class StudentCrudTest extends TestCase
         $this->assertEquals($studentData['kcpe_marks'], $student->kcpe_marks);
         $this->assertEquals($studentData['kcpe_grade'], $student->kcpe_grade);
     }
+
+    public function test_a_student_can_be_updated()
+    {
+        //Arrange
+        $student = Student::factory()->create();
+
+        //Act
+        $student->update([
+            'name' => 'Mercy Mutai',
+            'dob' => '1997-06-22',
+            'kcpe_marks' => '376'
+        ]);
+        
+        //Assert
+        $this->assertEquals('Mercy Mutai', $student->fresh()->name);
+        $this->assertEquals('1997-06-22', $student->fresh()->dob->format('Y-m-d'));
+        $this->assertEquals(376, $student->fresh()->kcpe_marks);
+    }
 }
