@@ -47,6 +47,7 @@ Route::group([
         Route::resource('levels', LevelsController::class);
         Route::resource('streams', StreamsController::class);
         Route::resource('departments', DepartmentsController::class);
+        Route::resource('subjects', SubjectsController::class);
 });
 
 /*
