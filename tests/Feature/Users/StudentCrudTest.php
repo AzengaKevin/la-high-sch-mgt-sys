@@ -17,7 +17,8 @@ class StudentCrudTest extends TestCase
         parent::setUp();
 
         //Arrange
-        $this->artisan('db:seed');
+        $this->artisan('db:seed --class=LevelsTableSeeder');
+        $this->artisan('db:seed --class=StreamsTableSeeder');
     }
 
     /** @group students */
