@@ -41,7 +41,7 @@
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->dob->format('Y-m-d') }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $student->joinClass() }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
-                                    <button class="px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Student"></button>
+                                    <a href="{{ route('user.students.edit', $student) }}" class="px-2 inline-block"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Student"></a>
                                     <button class="px-2"><img src="{{ asset('icons/trash.svg') }}" alt="Delete Student"></button>
                                 </td>
                             </tr>   

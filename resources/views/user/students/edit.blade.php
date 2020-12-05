@@ -1,15 +1,16 @@
 <x-app-layout>
 
-    <x-slot name="title">Add Student</x-slot>
+    <x-slot name="title">Edit Student</x-slot>
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Add Student') }}
+            {{ __('Edit Student ') . '(' . $student->name . ')'  }}
         </h2>
     </x-slot>
     <div class="pt-4 pb-16">
-        <form action="{{ route('user.students.store') }}" method="post" novalidate>
+        <form action="{{ route('user.students.update', $student) }}" method="post" novalidate>
             @csrf
+            @method('PATCH')
 
             <div class="px-12 pt-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -24,7 +25,7 @@
                                 <div class="mt-4 sm:mt-0">
                                     <x-label for="name" :value="__('Name')" />
                                     <x-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                        :value="old('name')" required autofocus />
+                                        :value="old('name') ?? $student->name" required autofocus />
                                     @error('name')
                                     <span class="text-red-500 inline-block mt-2">
                                         <strong>{{ $message }}</strong>
@@ -36,7 +37,7 @@
                                 <div class="mt-6">
                                     <x-label for="kcpe_marks" :value="__('KCPE Marks')" />
                                     <x-input id="kcpe_marks" class="block mt-1 w-full" type="text" name="kcpe_marks"
-                                        :value="old('kcpe_marks')" required />
+                                        :value="old('kcpe_marks') ?? $student->kcpe_marks" required />
                                     @error('kcpe_marks')
                                     <span class="text-red-500 inline-block mt-2">
                                         <strong>{{ $message }}</strong>
@@ -48,7 +49,7 @@
                                 <div class="mt-6">
                                     <x-label for="kcpe_grade" :value="__('KCPE Grade')" />
                                     <x-input id="kcpe_grade" class="block mt-1 w-full" type="text" name="kcpe_grade"
-                                        :value="old('kcpe_grade')" required />
+                                        :value="old('kcpe_grade') ?? $student->kcpe_grade" required />
                                     @error('kcpe_grade')
                                     <span class="text-red-500 inline-block mt-2">
                                         <strong>{{ $message }}</strong>
@@ -60,7 +61,7 @@
                                 <div class="mt-6">
                                     <x-label for="dob" :value="__('Date Of Birth')" />
                                     <x-input id="dob" class="block mt-1 w-full" type="date" name="dob"
-                                        :value="old('dob')" required />
+                                        :value="old('dob') ?? $student->dob" required />
                                         
                                     @error('dob')
                                     <span class="text-red-500 inline-block mt-2">
@@ -86,8 +87,8 @@
                                 <!-- Admission Number -->
                                 <div class="mt-4 sm:mt-0">
                                     <x-label for="admissionNumber" :value="__('Admission Number')" />
-                                    <x-input id="admissionNumber" class="block mt-1 w-full" type="text"
-                                        name="admission_number" :value="old('admission_number')" required />
+                                    <x-input disabled="true" id="admissionNumber" class="block mt-1 w-full" type="text"
+                                        name="admission_number" :value="old('admission_number') ?? $student->admission_number" required />
                                         @error('admission_number')
                                         <span class="text-red-500 inline-block mt-2">
                                             <strong>{{ $message }}</strong>
@@ -102,7 +103,7 @@
                                         class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                         <option value="" disabled selected>Select Stream...</option>
                                         @foreach ($streams as $stream)
-                                        <option value="{{ $stream->id }}">{{ $stream->name }}</option>
+                                        <option {{ ($stream->id == (old('stream_id') ?? $student->stream->id)) ? 'selected="selected"' : '' }} value="{{ $stream->id }}">{{ $stream->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('stream_id')
@@ -119,7 +120,7 @@
                                         class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                         <option value="" disabled selected>Select Level...</option>
                                         @foreach ($levels as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                        <option {{ ($level->id == (old('join_level_id') ?? $student->joinLevel->id)) ? 'selected="selected"' : '' }} value="{{ $level->id }}">{{ $level->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('join_level_id')

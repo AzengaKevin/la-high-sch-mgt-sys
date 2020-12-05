@@ -102,4 +102,26 @@ class StudentManagementTest extends TestCase
             $response->assertSessionHasErrors($field);
         }
     }
+
+    /** @group students */
+    public function test_user_can_see_student_edit_page()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        
+        //Arrange
+        $this->artisan('db:seed --class=LevelsTableSeeder');
+        $this->artisan('db:seed --class=StreamsTableSeeder');
+
+        $student = Student::factory()->create();
+
+        //Act
+        $response = $this->get(route('user.students.edit', $student));
+
+        //Assert
+        $response->assertOk();
+        $response->assertViewIs('user.students.edit');
+        $response->assertViewHasAll(['streams', 'levels', 'student']);
+
+    }
 }

@@ -82,7 +82,14 @@ class StudentsController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        //Get levels
+        $levels = Level::all();
+
+        //Get streams
+        $streams = Stream::all();
+
+        return view('user.students.edit', compact('levels', 'streams', 'student'));
+        
     }
 
     /**
