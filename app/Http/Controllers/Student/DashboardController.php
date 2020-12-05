@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Student;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+
+    public function __construct()
+    {
+        //Use the student guard to protect the routes
+        $this->middleware('auth:student');
+    }
+
     /**
      * Handle the incoming request.
      *
@@ -15,6 +23,8 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('student.dashboard');
+        $student = Auth::guard('student')->user();
+
+        return view('student.dashboard', compact('student'));
     }
 }
