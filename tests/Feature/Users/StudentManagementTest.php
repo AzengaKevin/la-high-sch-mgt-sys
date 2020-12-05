@@ -4,6 +4,7 @@ namespace Tests\Feature\Users;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Stream;
 use App\Models\Student;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -123,5 +124,40 @@ class StudentManagementTest extends TestCase
         $response->assertViewIs('user.students.edit');
         $response->assertViewHasAll(['streams', 'levels', 'student']);
 
+    }
+
+    /** @group students */
+    public function test_user_can_update_student_details()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        
+        //Arrange
+        $this->artisan('db:seed --class=LevelsTableSeeder');
+        $this->artisan('db:seed --class=StreamsTableSeeder');
+
+        $student = Student::factory()->create();
+
+        $stream = Stream::firstOrCreate(
+            ['slug' => 'green'],[
+                'letter' => 'G',
+                'name' => 'Green'
+            ],
+        );
+
+        //Act
+        $response = $this->patch(route('user.students.update', $student), array_merge($student->toArray(), [
+            'name' => 'John Doe',
+            'kcpe_marks' => 351,
+            'stream_id' => $stream->id
+        ]));
+
+        //Assert
+        $response->assertRedirect(route('user.students.index'));
+
+        $student = Student::first();
+        $this->assertEquals('John Doe', $student->name);
+        $this->assertEquals(351, $student->kcpe_marks);
+        $this->assertEquals('G', $student->stream->letter);
     }
 }

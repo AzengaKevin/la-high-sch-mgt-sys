@@ -101,7 +101,18 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string'], 
+            'stream_id' => ['numeric', 'required'], 
+            'kcpe_marks' => ['required', 'numeric', 'between:250,500'], 
+            'kcpe_grade' => ['required', 'max:2'], 
+            'dob' => ['required', 'date'], 
+            'join_level_id' => ['required', 'numeric']
+        ]);
+
+        $student->update($data);
+
+        return redirect()->route('user.students.index');
     }
 
     /**

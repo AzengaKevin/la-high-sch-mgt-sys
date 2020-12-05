@@ -25,7 +25,7 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'], 
-            'admission_number' => ['required'], 
+            'admission_number' => ['required', 'unique:students'], 
             'stream_id' => ['numeric', 'required'], 
             'kcpe_marks' => ['required', 'numeric', 'between:250,500'], 
             'kcpe_grade' => ['required', 'max:2'], 

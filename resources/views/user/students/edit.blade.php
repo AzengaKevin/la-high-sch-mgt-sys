@@ -61,7 +61,7 @@
                                 <div class="mt-6">
                                     <x-label for="dob" :value="__('Date Of Birth')" />
                                     <x-input id="dob" class="block mt-1 w-full" type="date" name="dob"
-                                        :value="old('dob') ?? $student->dob" required />
+                                        :value="old('dob') ?? $student->dob->format('Y-m-d')" required />
                                         
                                     @error('dob')
                                     <span class="text-red-500 inline-block mt-2">
@@ -140,7 +140,7 @@
                     <div class="overflow-hidden sm:rounded-lg">
                         <div class="p-6 flex justify-end border-b border-gray-200 text-center">
                             <x-button class="ml-3 w-full sm:w-40 text-center">
-                                {{ __('Add Student') }}
+                                {{ __('Update Student') }}
                             </x-button>
                         </div>
                     </div>

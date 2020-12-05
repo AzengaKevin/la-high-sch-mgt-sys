@@ -20,6 +20,7 @@
                                 <th class="border border-gray-600 px-3 py-2">Letter</th>
                                 <th class="border border-gray-600 px-3 py-2">Slug</th>
                                 <th class="border border-gray-600 px-3 py-2">Name</th>
+                                <th class="border border-gray-600 px-3 py-2">Students</th>
                                 <th class="border border-gray-600 px-3 py-2">Actions</th>
                             </tr>
                         </thead>
@@ -30,6 +31,7 @@
                                 <td class="border border-gray-600 px-3 py-2">{{ $stream->letter }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $stream->slug }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $stream->name }}</td>
+                                <td class="border border-gray-600 px-3 py-2">{{ $stream->students->count() }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
                                     <button class="px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Level"></button>
                                     <button class="px-2"><img src="{{ asset('icons/trash.svg') }}" alt="Delete Level"></button>
