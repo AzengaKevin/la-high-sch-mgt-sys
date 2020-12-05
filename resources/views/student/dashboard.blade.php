@@ -1,17 +1,20 @@
-<x-guest-layout>
+<x-student-layout>
 
     <x-slot name="title">Student Dashboard</x-slot>
 
-    <div class="py-12 flex flex-col items-center justify-center">
-        <div>
-            <a href="{{ route('home') }}">
-                <x-application-logo class="h-16 w-16" />
-            </a>
-        </div>
-        <div class="sm:rounded-lg mt-3">
-            <div class="p-6 bg-gray-200 border-b border-gray-300">
-                You're logged in as a student!
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    You're logged in as a student!
+                </div>
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-student-layout>

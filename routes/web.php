@@ -77,7 +77,7 @@ Route::group([
 */
 Route::group([
     'namespace' => 'Student', 
-    'middleware' => [], 
+    'middleware' => ['auth:student'], 
     'prefix' => 'student', 
     'as' => 'student.'], function(){
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
