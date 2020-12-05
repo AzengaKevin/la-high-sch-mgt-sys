@@ -66,3 +66,19 @@ Route::group([
     'as' => 'user.'], function(){
         Route::resource('students', StudentsController::class);
 });
+
+/*
+|--------------------------------------------------------------------------
+| Students Routes
+|--------------------------------------------------------------------------
+|
+| Routes for low level functionality of the system, the most lethal routes I would say
+|
+*/
+Route::group([
+    'namespace' => 'Student', 
+    'middleware' => [], 
+    'prefix' => 'student', 
+    'as' => 'student.'], function(){
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+});

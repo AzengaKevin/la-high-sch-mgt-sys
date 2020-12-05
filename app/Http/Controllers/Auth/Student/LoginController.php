@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\Student;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 
 class LoginController extends Controller
@@ -25,8 +26,10 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if(Auth::guard('students')->attempt($data)){
-            return redirect(RouteServiceProvider::HOME);
+        // dd($data);
+
+        if(Auth::guard('student')->attempt($data)){
+            return redirect()->route('student.dashboard');
         }
 
         return back();
