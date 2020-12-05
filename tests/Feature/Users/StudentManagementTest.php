@@ -4,6 +4,7 @@ namespace Tests\Feature\Users;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -15,7 +16,8 @@ class StudentManagementTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('db:seed');
+        $this->be(User::factory()->create());
+
     }
     
     /** @group students */
@@ -23,7 +25,7 @@ class StudentManagementTest extends TestCase
     {
         //Arrange
         $this->withoutExceptionHandling();
-        $this->be(User::factory()->create());
+        $this->artisan('db:seed');
 
         //Act
         $response = $this->get(route('user.students.index'));
@@ -32,5 +34,72 @@ class StudentManagementTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('user.students.index');
         $response->assertViewHas('students');
+    }
+
+    /** @group students */
+    public function test_user_can_view_create_student_page()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+
+        //Act
+        $response = $this->get(route('user.students.create'));
+
+        //Assert
+        $response->assertOk();
+        $response->assertViewIs('user.students.create');
+        $response->assertViewHasAll(['streams', 'levels']);
+    }
+
+    /** @group students */
+    public function test_user_can_create_a_student()
+    {
+        //Arrange
+        $this->artisan('db:seed --class=LevelsTableSeeder');
+        $this->artisan('db:seed --class=StreamsTableSeeder');
+
+        $studentData = Student::factory()->make()->toArray();
+
+        unset($studentData['password']);
+
+        //Act
+        $response = $this->post(route('user.students.store', $studentData));
+
+        //Assert
+        $this->assertCount(1, Student::all());
+        $this->assertEquals($studentData['admission_number'], Student::first()->admission_number);
+
+        $response->assertRedirect(route('user.students.index'));
+    }
+
+    /** @group students */
+    public function test_all_student_fields_are_required()
+    {
+        
+        //Arrange
+        $this->artisan('db:seed --class=LevelsTableSeeder');
+        $this->artisan('db:seed --class=StreamsTableSeeder');
+
+        $studentData = Student::factory()->make()->toArray();
+
+        unset($studentData['password']);
+
+        $fields = [
+            'name', 'admission_number', 'stream_id', 'kcpe_marks', 
+            'kcpe_grade', 'dob', 'join_level_id'
+        ];
+
+        foreach ($fields as $field) {
+            //Act
+            $response = $this->post(
+                route('user.students.store', array_merge(
+                    $studentData,
+                    [$field => null]  
+                ))
+            );
+
+            //Assert
+            $response->assertSessionHasErrors($field);
+        }
     }
 }

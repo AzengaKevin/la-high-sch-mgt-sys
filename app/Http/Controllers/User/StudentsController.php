@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Level;
+use App\Models\Stream;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentsController extends Controller
 {
@@ -28,18 +32,35 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        //
+
+        //Get levels
+        $levels = Level::all();
+
+        //Get streams
+        $streams = Stream::all();
+
+        return view('user.students.create', compact('levels', 'streams'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreStudentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['join_date'] = now()->format('Y-m-d');
+
+        $data['password'] = Hash::make($data['admission_number']);
+
+        Student::create($data);
+
+        $request->flash('message', 'Student successfully added');
+
+        return redirect()->route('user.students.index');
     }
 
     /**
