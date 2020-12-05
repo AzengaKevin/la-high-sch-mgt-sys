@@ -13,7 +13,7 @@ class Student extends Authenticatable
 
     protected $fillable = [
         'name', 'admission_number', 'stream_id', 'kcpe_marks', 
-        'kcpe_grade', 'dob', 'join_date', 'join_level_id'
+        'kcpe_grade', 'dob', 'join_date', 'join_level_id', 'password'
     ];
 
 
