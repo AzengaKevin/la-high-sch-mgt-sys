@@ -18,4 +18,9 @@ class Subject extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function streams()
+    {
+        return $this->belongsToMany(Stream::class);
+    }
 }

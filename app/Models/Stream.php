@@ -10,4 +10,12 @@ class Stream extends Model
     use HasFactory;
 
     protected $fillable = ['letter', 'slug', 'name'];
+
+    /**
+     * A relationship between a stream and the industrial subjects
+     */
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class);
+    }
 }
