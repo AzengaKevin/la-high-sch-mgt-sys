@@ -102,7 +102,7 @@
                                         class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                         <option value="" disabled selected>Select Stream...</option>
                                         @foreach ($streams as $stream)
-                                        <option value="{{ $stream->id }}">{{ $stream->name }}</option>
+                                        <option {{ (old('stream_id') == $stream->id) ? 'selected="selected"' : '' }} value="{{ $stream->id }}">{{ $stream->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('stream_id')
@@ -119,7 +119,7 @@
                                         class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                         <option value="" disabled selected>Select Level...</option>
                                         @foreach ($levels as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                        <option  {{ (old('join_level_id') == $level->id) ? 'selected="selected"' : '' }}  value="{{ $level->id }}">{{ $level->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('join_level_id')

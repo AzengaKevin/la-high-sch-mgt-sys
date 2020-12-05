@@ -55,7 +55,7 @@ class StudentsController extends Controller
         $data['join_date'] = now()->format('Y-m-d');
 
         $data['password'] = Hash::make($data['admission_number']);
-
+        
         Student::create($data);
 
         $request->flash('message', 'Student successfully added');
