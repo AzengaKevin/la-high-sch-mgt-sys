@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             StreamsTableSeeder::class,
             StudentSeeder::class,
             DepartmentSeeder::class,
-            SubjectsSeeder::class
+            SubjectsSeeder::class,
+            TeacherSeeder::class,
         ]);
     }
 }

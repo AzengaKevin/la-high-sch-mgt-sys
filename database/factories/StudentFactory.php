@@ -23,7 +23,7 @@ class StudentFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'admission_number' => $this->faker->numberBetween(10000, 20000),
+            'admission_number' => $this->faker->unique()->numberBetween(10000, 20000),
             'stream_id' => $this->faker->randomElement($array = [1, 2, 3, 4]), 
             'kcpe_marks' => $this->faker->numberBetween(350, 400), 
             'kcpe_grade' => $this->faker->randomElement($array = ['B+', 'A-', 'A']),

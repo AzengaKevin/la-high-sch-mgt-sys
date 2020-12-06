@@ -48,6 +48,7 @@ Route::group([
         Route::resource('streams', StreamsController::class);
         Route::resource('departments', DepartmentsController::class);
         Route::resource('subjects', SubjectsController::class);
+        Route::resource('teachers', TeachersController::class);
 });
 
 /*
