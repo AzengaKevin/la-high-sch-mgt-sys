@@ -67,6 +67,23 @@ class TeachersManagmentTest extends TestCase
     }
 
     /** @group teachers */
+    public function test_admin_can_view_a_single_teacher_page()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        $teacher = Teacher::factory()->create();
+
+        //Act
+        $response = $this->get(route('admin.teachers.show', $teacher));
+
+        //Assert
+        $response->assertOk();
+        $response->assertViewIs('admin.teachers.show');
+        $response->assertViewHasAll(['teacher', 'subjects']);
+
+    }
+
+    /** @group teachers */
     public function test_admin_can_view_edit_teacher_page()
     {
         //Arrange
