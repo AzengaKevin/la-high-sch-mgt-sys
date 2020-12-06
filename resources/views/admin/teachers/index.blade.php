@@ -41,6 +41,9 @@
                                 <td class="border border-gray-600 px-3 py-2">{{ $teacher->union }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $teacher->created_at->format('Y-m-d') }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
+                                    <a href="{{ route('admin.teachers.show', $teacher) }}" class="px-2 inline-block"><img
+                                            class="text-blue-500" src="{{ asset('icons/eye.svg') }}"
+                                            alt="Edit Teacher"></a>
                                     <a href="{{ route('admin.teachers.edit', $teacher) }}" class="px-2 inline-block"><img
                                             class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}"
                                             alt="Edit Teacher"></a>

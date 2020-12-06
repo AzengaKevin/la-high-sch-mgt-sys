@@ -49,6 +49,9 @@ Route::group([
         Route::resource('departments', DepartmentsController::class);
         Route::resource('subjects', SubjectsController::class);
         Route::resource('teachers', TeachersController::class);
+
+        //Teacher Subjects
+        Route::put('teachers/{teacher}/subjects', [\App\Http\Controllers\Admin\TeacherSubjectsController::class, 'update'])->name('teachers.subjects.update');
 });
 
 /*

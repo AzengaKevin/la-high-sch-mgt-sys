@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -58,7 +59,9 @@ class TeachersController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        $subjects = Subject::all();
+        
+        return view('admin.teachers.show', compact('teacher', 'subjects'));
     }
 
     /**

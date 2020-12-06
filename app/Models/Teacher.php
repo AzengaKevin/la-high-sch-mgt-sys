@@ -42,8 +42,20 @@ class Teacher extends Model
        'phone_verified_at' => 'datetime',
    ];
 
+   /**
+    * A function containing the array of unions
+    * @return array
+    */
    public static function unions() : array
    {
        return array('knut', 'kuppet');
+   }
+
+   /**
+    * Teacher subject relationship method
+    */
+   public function subjects()
+   {
+        return $this->belongsToMany(Subject::class);
    }
 }

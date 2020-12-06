@@ -23,4 +23,9 @@ class Subject extends Model
     {
         return $this->belongsToMany(Stream::class);
     }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
 }
