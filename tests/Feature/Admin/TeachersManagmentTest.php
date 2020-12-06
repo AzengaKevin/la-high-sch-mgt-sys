@@ -65,5 +65,43 @@ class TeachersManagmentTest extends TestCase
         $response->assertRedirect(route('admin.teachers.index'));
         
     }
+
+    /** @group teachers */
+    public function test_admin_can_view_edit_teacher_page()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        $teacher = Teacher::factory()->create();
+
+        //Act
+        $response = $this->get(route('admin.teachers.edit', $teacher));
+
+        //Assert
+        $response->assertOk();
+        $response->assertViewIs('admin.teachers.edit');
+        $response->assertViewHas('teacher');
+    }
+
+    /** @group teachers */
+    public function test_a_teacher_can_be_successfully_updated()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        $teacher = Teacher::factory()->create();
+
+        //Act
+        $response = $this->patch(route('admin.teachers.update', $teacher), array_merge(
+            $teacher->toArray(),[
+                'name' => 'Mr Robert Sasaka',
+                'tsc_number' => '386191'
+            ]
+        ));
+
+        //Assert
+        $this->assertEquals('Mr Robert Sasaka', $teacher->fresh()->name);
+        $this->assertEquals('386191', $teacher->fresh()->tsc_number);
+        $response->assertRedirect(route('admin.teachers.index'));
+
+    }
 }
 

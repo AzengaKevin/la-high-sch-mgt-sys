@@ -69,7 +69,7 @@ class TeachersController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('admin.teachers.edit', compact('teacher'));
     }
 
     /**
@@ -81,7 +81,17 @@ class TeachersController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $teacherData = $request->validate([
+            'name' => ['bail', 'required', 'string'],
+            'email' => ['email', 'required'],
+            'tsc_number' => ['required', 'numeric'],
+            'union' => ['required'],
+            'phone' => ['required']
+        ]);
+
+        $teacher->update($teacherData);
+
+        return redirect()->route('admin.teachers.index');
     }
 
     /**
