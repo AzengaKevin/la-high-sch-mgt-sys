@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreTeacherRequest;
 
 class TeachersController extends Controller
 {
@@ -16,7 +18,7 @@ class TeachersController extends Controller
     public function index()
     {
         //Get all the teachers
-        $teachers = Teacher::paginate(16);
+        $teachers = Teacher::latest()->paginate(16);
 
         return view('admin.teachers.index', compact('teachers'));
     }
@@ -28,18 +30,24 @@ class TeachersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.teachers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTeacherRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeacherRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['password'] = Hash::make('password');
+
+        Teacher::create($data);
+
+        return redirect()->route('admin.teachers.index');
     }
 
     /**

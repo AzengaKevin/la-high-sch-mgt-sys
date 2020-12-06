@@ -41,4 +41,9 @@ class Teacher extends Model
        'email_verified_at' => 'datetime',
        'phone_verified_at' => 'datetime',
    ];
+
+   public static function unions() : array
+   {
+       return array('knut', 'kuppet');
+   }
 }
