@@ -17,8 +17,9 @@ class TeacherSubjectsController extends Controller
             'subjects.*' => ['numeric']
         ]);
 
-        $teacher->subjects()->sync($data['subjects']);
-
+        if(count($data['subjects']) <= 2){
+            $teacher->subjects()->sync($data['subjects']);
+        }
 
         return redirect()->route('admin.teachers.show', $teacher);
     }

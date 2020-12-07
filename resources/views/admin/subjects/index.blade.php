@@ -20,6 +20,7 @@
                                 <th class="border border-gray-600 px-3 py-2">Name</th>
                                 <th class="border border-gray-600 px-3 py-2">Slug</th>
                                 <th class="border border-gray-600 px-3 py-2">Department</th>
+                                <th class="border border-gray-600 px-3 py-2">Teachers</th>
                                 <th class="border border-gray-600 px-3 py-2">Description</th>
                                 <th class="border border-gray-600 px-3 py-2">Actions</th>
                             </tr>
@@ -31,6 +32,7 @@
                                 <td class="border border-gray-600 px-3 py-2">{{ $subject->name }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $subject->slug }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $subject->department->name }}</td>
+                                <td class="border border-gray-600 px-3 py-2">{{ $subject->teachers->count() }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $subject->description ?? 'Not Available' }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
                                     <button class="px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Level"></button>
