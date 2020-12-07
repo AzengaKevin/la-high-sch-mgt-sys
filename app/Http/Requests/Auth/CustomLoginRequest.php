@@ -63,11 +63,25 @@ class CustomLoginRequest extends FormRequest
         }else{
             //The login is not an email
 
-            //Get credentials
-            $data = ['admission_number' => $this->login, 'password' => $this->password];
+            if(strlen($this->login) == 5){
+                //Get credentials
+                $data = ['admission_number' => $this->login, 'password' => $this->password];
+    
+                //Login the student
+                if (!Auth::guard('student')->attempt($data, $this->filled('remember'))) {
+                    RateLimiter::hit($this->throttleKey());
+        
+                    throw ValidationException::withMessages([
+                        'login' => __('auth.failed'),
+                    ]);
+                }    
+            }
 
-            //Login the student
-            if (!Auth::guard('student')->attempt($data, $this->filled('remember'))) {
+            //Get credentials
+            $data = ['tsc_number' => $this->login, 'password' => $this->password];
+
+            //Login the teacher
+            if (!Auth::guard('teacher')->attempt($data, $this->filled('remember'))) {
                 RateLimiter::hit($this->throttleKey());
     
                 throw ValidationException::withMessages([
@@ -75,8 +89,6 @@ class CustomLoginRequest extends FormRequest
                 ]);
             }    
             
-            //@TODO Handle teacher login
-
         }
 
 

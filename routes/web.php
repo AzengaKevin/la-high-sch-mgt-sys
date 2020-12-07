@@ -86,3 +86,19 @@ Route::group([
     'as' => 'student.'], function(){
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Tachers Routes
+|--------------------------------------------------------------------------
+|
+| Routes that belong to authnticated teachers
+|
+*/
+Route::group([
+    'namespace' => 'Teacher', 
+    'middleware' => ['auth:teacher'], 
+    'prefix' => 'teacher', 
+    'as' => 'teacher.'], function(){
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+});
