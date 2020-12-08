@@ -59,4 +59,15 @@ class Teacher extends Authenticatable
    {
         return $this->belongsToMany(Subject::class);
    }
+
+   /**
+    * Teacher Teaching Level Relationship Method
+    */
+   public function levels()
+   {
+       return $this->belongsToMany(Level::class, 'teacher_level_stream_subject')
+                   ->withTimestamps()
+                   ->withPivot('stream_id', 'subject_id', 'deleted_at');
+   }
+
 }

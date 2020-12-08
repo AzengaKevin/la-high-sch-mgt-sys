@@ -12,4 +12,12 @@ class Level extends Model
     protected $fillable = [
         'numeric', 'slug', 'name'
     ];
+
+    /**
+     * Level teachers relationship
+     */
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class, 'teacher_level_stream_subject');
+    }
 }

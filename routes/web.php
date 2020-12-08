@@ -51,7 +51,11 @@ Route::group([
         Route::resource('teachers', TeachersController::class);
 
         //Teacher Subjects
-        Route::put('teachers/{teacher}/subjects', [\App\Http\Controllers\Admin\TeacherSubjectsController::class, 'update'])->name('teachers.subjects.update');
+        Route::put('teachers/{teacher}/subjects', [\App\Http\Controllers\Admin\TeacherSubjectsController::class, 'update'])
+            ->name('teachers.subjects.update');
+        //Teacher Levels
+        Route::post('teachers/{teacher}/levels', [\App\Http\Controllers\Admin\TeacherLevelsController::class, 'store'])
+            ->name('teachers.levels.store');
 });
 
 /*
