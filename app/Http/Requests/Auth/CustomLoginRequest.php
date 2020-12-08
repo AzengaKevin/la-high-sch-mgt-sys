@@ -77,17 +77,21 @@ class CustomLoginRequest extends FormRequest
                 }    
             }
 
-            //Get credentials
-            $data = ['tsc_number' => $this->login, 'password' => $this->password];
-
-            //Login the teacher
-            if (!Auth::guard('teacher')->attempt($data, $this->filled('remember'))) {
-                RateLimiter::hit($this->throttleKey());
+            if(strlen($this->login) == 6){
+                
+                //Get credentials
+                $data = ['tsc_number' => $this->login, 'password' => $this->password];
     
-                throw ValidationException::withMessages([
-                    'login' => __('auth.failed'),
-                ]);
-            }    
+                //Login the teacher
+                if (!Auth::guard('teacher')->attempt($data, $this->filled('remember'))) {
+                    RateLimiter::hit($this->throttleKey());
+        
+                    throw ValidationException::withMessages([
+                        'login' => __('auth.failed'),
+                    ]);
+                } 
+
+            }
             
         }
 
