@@ -51,12 +51,10 @@ class AuthenticatedSessionController extends Controller
         if(!is_null(Auth::guard('student')->user())) Auth::guard('student')->logout();
         if(!is_null(Auth::guard('teacher')->user())) Auth::guard('teacher')->logout();
 
-        dd(Auth::guard('student')->user());
-
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route(RouteServiceProvider::HOME));
     }
 }

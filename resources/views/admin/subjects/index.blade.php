@@ -35,8 +35,8 @@
                                 <td class="border border-gray-600 px-3 py-2">{{ $subject->teachers->count() }}</td>
                                 <td class="border border-gray-600 px-3 py-2">{{ $subject->description ?? 'Not Available' }}</td>
                                 <td class="border border-gray-600 px-3 py-2">
-                                    <button class="px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Level"></button>
-                                    <button class="px-2"><img src="{{ asset('icons/trash.svg') }}" alt="Delete Level"></button>
+                                    <button class="inline-block px-2"><img class="text-red-500" src="{{ asset('icons/pencil-square.svg') }}" alt="Edit Level"></button>
+                                    <button class="inline-block px-2"><img src="{{ asset('icons/trash.svg') }}" alt="Delete Level"></button>
                                 </td>
                             </tr>   
                             @endforeach
