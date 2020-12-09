@@ -20,6 +20,9 @@
                                 <a class="inline-block px-3 py-2"
                                     :class="{ 'border-b-2 border-blue-300' : tab === 'subjects' }"
                                     @click.prevent="tab = 'subjects'" role="button" href="#">Teachers Subjects</a>
+                                <a class="inline-block px-3 py-2"
+                                    :class="{ 'border-b-2 border-blue-300' : tab === 'classes' }"
+                                    @click.prevent="tab = 'classes'" role="button" href="#">Teachers Subjects</a>
                             </nav>
                             <div class="p-3" x-show="tab === 'details'">
                                 <div class="p-6 bg-white flex flex-col md:flex-row">
@@ -104,6 +107,16 @@
                                             </div>
                                         </form>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="p-3" x-show="tab === 'classes'">
+                                <div x-data="{ showModal: false }" class="p-6 bg-white">
+                                    <x-button type="button" @click.prevent="{ showModal = true }">Add Class</x-button>
+
+                                    <div x-show="showModal === true" class="block fixed w-screen inset-0">
+                                        <button @click.prevent="{ showModal = false }" style="background: rgba(0, 0, 0, 0.5); z-index: 3;" class="w-full h-full">Test</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
