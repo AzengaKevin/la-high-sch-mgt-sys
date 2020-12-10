@@ -19,4 +19,22 @@ class ProfileController extends Controller
         
         return view('teacher.profile', compact('teacher'));
     }
+
+    public function update(Request $request)
+    {
+        //Validate data
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:64'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'max:20'],
+        ]);
+
+        //Get the authenticated teacher
+        $teacher = Auth::guard('teacher')->user();
+
+        //Update|Save the information
+        $teacher->update($data);
+
+        return redirect()->route('teacher.me.profile.show');
+    }
 }

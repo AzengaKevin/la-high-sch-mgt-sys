@@ -17,7 +17,9 @@
                 </div>
                 <div class="w-full sm:w-2/3 bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4 sm:mt-0">
                     <div class="p-6 bg-white">
-                        <form action="" method="post">
+                        <form action="{{ route('teacher.me.profile.update') }}" method="post">
+                            @csrf
+                            @method('PATCH')
                             <div>
                                 <x-label for="name" :value="__('Name')" />
                                 <x-input id="name" class="block mt-1 w-full" type="text" name="name"
@@ -62,9 +64,9 @@
                                     required />
                             </div>
                             <div class="mt-6">
-                                <x-label for="passwordConfirm" :value="__('Confirm Password')" />
-                                <x-input id="passwordConfirm" class="block mt-1 w-full" type="password"
-                                    name="password_confirm" required />
+                                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                                    name="password_confirmation" required />
                             </div>
 
                             <div class="mt-6 flex justify-start sm:justify-end">
