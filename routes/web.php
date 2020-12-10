@@ -89,6 +89,10 @@ Route::group([
     'prefix' => 'student', 
     'as' => 'student.'], function(){
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::get('/me/profile', [\App\Http\Controllers\Student\ProfileController::class, 'show'])->name('me.profile.show');
+        Route::patch('/me/profile/update', [\App\Http\Controllers\Student\ProfileController::class, 'update'])->name('me.profile.update');
+        Route::patch('/me/password/update', PasswordController::class)->name('me.password.update');
+
 });
 
 /*
