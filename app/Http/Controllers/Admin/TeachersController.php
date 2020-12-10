@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Level;
+use App\Models\Stream;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -60,8 +62,12 @@ class TeachersController extends Controller
     public function show(Teacher $teacher)
     {
         $subjects = Subject::all();
+        $levels = Level::all();
+        $streams = Stream::all();
+
+        $teacher->load('subjects');
         
-        return view('admin.teachers.show', compact('teacher', 'subjects'));
+        return view('admin.teachers.show', compact('teacher', 'subjects', 'levels', 'streams'));
     }
 
     /**

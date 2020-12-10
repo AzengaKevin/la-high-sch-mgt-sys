@@ -22,7 +22,7 @@
                                     @click.prevent="tab = 'subjects'" role="button" href="#">Teachers Subjects</a>
                                 <a class="inline-block px-3 py-2"
                                     :class="{ 'border-b-2 border-blue-300' : tab === 'classes' }"
-                                    @click.prevent="tab = 'classes'" role="button" href="#">Teachers Subjects</a>
+                                    @click.prevent="tab = 'classes'" role="button" href="#">Teachers Classes</a>
                             </nav>
                             <div class="p-3" x-show="tab === 'details'">
                                 <div class="p-6 bg-white flex flex-col md:flex-row">
@@ -110,13 +110,48 @@
                                 </div>
                             </div>
                             <div class="p-3" x-show="tab === 'classes'">
-                                <div x-data="{ showModal: false }" class="p-6 bg-white">
-                                    <x-button type="button" @click.prevent="{ showModal = true }">Add Class</x-button>
+                                <div class="py-4 bg-white">
+                                    <x-modals.teachers.add-level :levels="$levels" :streams="$streams"
+                                        :teacher="$teacher" />
 
-                                    <div x-show="showModal === true" class="block fixed w-screen inset-0">
-                                        <button @click.prevent="{ showModal = false }" style="background: rgba(0, 0, 0, 0.5); z-index: 3;" class="w-full h-full">Test</button>
+                                    <div class="mt-6">
+                                        @if($teacher->levels->count())
+                                        <table
+                                            class=" text-center border border-collapse border border-gray-600 table-auto w-full">
+                                            <thead class="bg-gray-200">
+                                                <tr>
+                                                    <th class="border border-gray-600 px-3 py-2">ID</th>
+                                                    <th class="border border-gray-600 px-3 py-2">Level</th>
+                                                    <th class="border border-gray-600 px-3 py-2">Stream</th>
+                                                    <th class="border border-gray-600 px-3 py-2">Subject</th>
+                                                    <th class="border border-gray-600 px-3 py-2">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($teacher->levels as $level)
+                                                <tr>
+                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->id }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->pivot->level_id }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->pivot->stream_id }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->pivot->subject_id }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">
+                                                        <button class="px-2"><img class="text-red-500"
+                                                                src="{{ asset('icons/pencil-square.svg') }}"
+                                                                alt="Edit Level"></button>
+                                                        <button class="px-2"><img src="{{ asset('icons/trash.svg') }}"
+                                                                alt="Delete Level"></button>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        @else
+                                        <div class="bg-blue-200 text-blue-700 px-3 py-2 rounded flex items-center">
+                                            <img width="32" src="{{ asset('/icons/info.svg') }}" alt="Info Icon">
+                                            <span>No levels found</span>
+                                        </div>
+                                        @endif
                                     </div>
-
                                 </div>
                             </div>
                         </div>

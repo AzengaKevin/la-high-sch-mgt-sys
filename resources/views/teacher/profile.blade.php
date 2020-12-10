@@ -52,7 +52,9 @@
                 </div>
                 <div class="w-full sm:w-2/3 bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4 sm:mt-0">
                     <div class="p-6 bg-white">
-                        <form action="" method="post">
+                        <form action="{{ route('teacher.me.password.update') }}" method="post">
+                            @csrf
+                            @method('PATCH')
                             <div>
                                 <x-label for="currentPassword" :value="__('Current Password')" />
                                 <x-input id="currentPassword" class="block mt-1 w-full" type="password"

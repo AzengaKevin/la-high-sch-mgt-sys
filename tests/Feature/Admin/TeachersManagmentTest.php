@@ -79,7 +79,7 @@ class TeachersManagmentTest extends TestCase
         //Assert
         $response->assertOk();
         $response->assertViewIs('admin.teachers.show');
-        $response->assertViewHasAll(['teacher', 'subjects']);
+        $response->assertViewHasAll(['teacher', 'subjects', 'levels', 'streams']);
 
     }
 
