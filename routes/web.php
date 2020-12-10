@@ -105,4 +105,5 @@ Route::group([
     'prefix' => 'teacher', 
     'as' => 'teacher.'], function(){
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::get('/me/profile', [\App\Http\Controllers\Teacher\ProfileController::class, 'show'])->name('me.profile');
 });

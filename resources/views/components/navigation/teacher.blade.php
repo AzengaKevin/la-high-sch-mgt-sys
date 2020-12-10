@@ -12,8 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('student.dashboard')" :active="request()->routeIs('student.dashboard')">
+                    <x-nav-link :href="route('teacher.dashboard')" :active="request()->routeIs('teacher.dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('teacher.me.profile')" :active="request()->routeIs('teacher.me.profile')">
+                        {{ __('Profile') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -62,8 +65,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('student.dashboard')" :active="request()->routeIs('student.dashboard')">
+            <x-responsive-nav-link :href="route('teacher.dashboard')" :active="request()->routeIs('teacher.dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('teacher.me.profile')" :active="request()->routeIs('teacher.me.profile')">
+                {{ __('Profile') }}
             </x-responsive-nav-link>
         </div>
 
