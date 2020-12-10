@@ -33,5 +33,26 @@ class ProfileManagementTest extends TestCase
         //Assert
         $response->assertOk();
         $response->assertViewIs('student.profile');
+        $response->assertViewHas('student');
+    }
+
+    /** @group students */
+    public function test_a_student_can_update_own_name()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        $student = Student::factory()->create();
+        $this->be($student, 'student');
+
+        //Act
+        $response = $this->patch(route('student.me.profile.update'), [
+            'name' => 'John Doe'
+        ]);
+
+
+        //Assert
+        $student = Student::first();
+        $this->assertEquals('John Doe', $student->name);
+        $response->assertRedirect(route('student.me.profile.show'));
     }
 }
