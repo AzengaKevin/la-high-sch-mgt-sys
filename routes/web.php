@@ -108,4 +108,5 @@ Route::group([
         Route::get('/me/profile', [\App\Http\Controllers\Teacher\ProfileController::class, 'show'])->name('me.profile.show');
         Route::patch('/me/profile/update', [\App\Http\Controllers\Teacher\ProfileController::class, 'update'])->name('me.profile.update');
         Route::patch('/me/password/update', PasswordController::class)->name('me.password.update');
+        Route::get('/me/subjects', SubjectsController::class)->name('me.subjects.show');
 });

@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('teacher.me.profile.show')" :active="request()->routeIs('teacher.me.profile.show')">
                         {{ __('Profile') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('teacher.me.subjects.show')" :active="request()->routeIs('teacher.me.subjects.show')">
+                        {{ __('Subjects') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -70,6 +73,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('teacher.me.profile.show')" :active="request()->routeIs('teacher.me.profile.show')">
                 {{ __('Profile') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('teacher.me.subjects.show')" :active="request()->routeIs('teacher.me.subjects.show')">
+                {{ __('Subjects') }}
             </x-responsive-nav-link>
         </div>
 
