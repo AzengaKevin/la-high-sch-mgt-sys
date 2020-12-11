@@ -11,11 +11,14 @@ class ProfileManagementTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $student;
+
     public function setUp() : void
     {
         parent::setUp();
         $this->artisan('db:seed --class=LevelsTableSeeder');
         $this->artisan('db:seed --class=StreamsTableSeeder');
+        $this->be($this->student = Student::factory()->create(), 'student');
     }
     
     /** @group students */
@@ -23,12 +26,9 @@ class ProfileManagementTest extends TestCase
     {
         //Arrange
         $this->withoutExceptionHandling();
-        $student = Student::factory()->create();
-        $this->be($student, 'student');
 
         //Act
         $response = $this->get(route('student.me.profile.show'));
-
 
         //Assert
         $response->assertOk();
@@ -41,8 +41,6 @@ class ProfileManagementTest extends TestCase
     {
         //Arrange
         $this->withoutExceptionHandling();
-        $student = Student::factory()->create();
-        $this->be($student, 'student');
 
         //Act
         $response = $this->patch(route('student.me.profile.update'), [
@@ -54,5 +52,20 @@ class ProfileManagementTest extends TestCase
         $student = Student::first();
         $this->assertEquals('John Doe', $student->name);
         $response->assertRedirect(route('student.me.profile.show'));
+    }
+
+
+    /** @group students */
+    public function test_student_can_school_details()
+    {
+        
+        $this->withoutExceptionHandling();
+
+        $response = $this->get(route('student.me.details.show'));
+
+        $response->assertViewIs('student.details');
+
+        $response->assertViewHas('student');
+
     }
 }
