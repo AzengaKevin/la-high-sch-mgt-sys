@@ -4,7 +4,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+            {{ __('Details') }}
         </h2>
     </x-slot>
 
@@ -62,15 +62,13 @@
                             </div>
                             <div class="mt-4">
                                 <x-label for="stream" :value="__('Stream')" />
-                                <x-input disabled="true" aria-disabled="true" id="stream"
-                                    class="block mt-1 w-full" type="text" name="stream"
-                                    :value="$student->stream->name" required />
+                                <x-input disabled="true" aria-disabled="true" id="stream" class="block mt-1 w-full"
+                                    type="text" name="stream" :value="$student->stream->name" required />
                             </div>
                             <div class="mt-4">
                                 <x-label for="join_level" :value="__('Join Level')" />
-                                <x-input disabled="true" aria-disabled="true" id="join_level"
-                                    class="block mt-1 w-full" type="text" name="join_level"
-                                    :value="$student->joinLevel->name" required />
+                                <x-input disabled="true" aria-disabled="true" id="join_level" class="block mt-1 w-full"
+                                    type="text" name="join_level" :value="$student->joinLevel->name" required />
                             </div>
                             <div class="mt-4">
                                 <x-label for="join_date" :value="__('Join Date')" />
