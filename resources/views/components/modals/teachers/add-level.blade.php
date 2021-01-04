@@ -14,7 +14,7 @@
         <div class="h-auto p-4 mx-2 text-left bg-white rounded shadow-xl md:w-96 md:p-6 lg:p-8 md:mx-0"
             @click.away="open = false">
 
-            <form action="{{ route('admin.teachers.levels.store', $teacher) }}" method="post">
+            <form action="{{ route('admin.teachers.lestrsus.store', $teacher) }}" method="post">
                 @csrf
                 <div class="mt-3 text-center sm:mt-0 sm:-ml-4 sm:text-left">
                     <h3 class="text-lg font-bold leading-6 text-gray-900">

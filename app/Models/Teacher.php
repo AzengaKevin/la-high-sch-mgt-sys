@@ -63,11 +63,9 @@ class Teacher extends Authenticatable
    /**
     * Teacher Teaching Level Relationship Method
     */
-   public function levels()
+   public function lestrsus()
    {
-       return $this->belongsToMany(Level::class, 'teacher_level_stream_subject')
-                   ->withTimestamps()
-                   ->withPivot('stream_id', 'subject_id', 'deleted_at');
+       return $this->hasMany(Lestrsu::class);
    }
 
 }

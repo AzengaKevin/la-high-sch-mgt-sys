@@ -115,9 +115,9 @@
                                         :teacher="$teacher" />
 
                                     <div class="mt-6">
-                                        @if($teacher->levels->count())
+                                        @if($teacher->lestrsus->count())
                                         <table
-                                            class=" text-center border border-collapse border border-gray-600 table-auto w-full">
+                                            class=" text-center border border-collapse border-gray-600 table-auto w-full">
                                             <thead class="bg-gray-200">
                                                 <tr>
                                                     <th class="border border-gray-600 px-3 py-2">ID</th>
@@ -128,18 +128,30 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($teacher->levels as $level)
+                                                @foreach ($teacher->lestrsus as $lestrsu)
                                                 <tr>
-                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->id }}</td>
-                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->pivot->level_id }}</td>
-                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->pivot->stream_id }}</td>
-                                                    <td class="border border-gray-600 px-3 py-2">{{ $level->pivot->subject_id }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">{{ $lestrsu->id }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">
+                                                        {{ $lestrsu->level->name }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">
+                                                        {{ $lestrsu->stream->name }}</td>
+                                                    <td class="border border-gray-600 px-3 py-2">
+                                                        {{ $lestrsu->subject->name }}</td>
                                                     <td class="border border-gray-600 px-3 py-2">
                                                         <button class="px-2"><img class="text-red-500"
                                                                 src="{{ asset('icons/pencil-square.svg') }}"
                                                                 alt="Edit Level"></button>
-                                                        <button class="px-2"><img src="{{ asset('icons/trash.svg') }}"
-                                                                alt="Delete Level"></button>
+
+                                                        <form class="inline-block" action="{{ route('admin.teachers.lestrsus.destroy', [
+                                                            'teacher' => $teacher,
+                                                            'lestrsu' => $lestrsu
+                                                        ]) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="px-2"><img
+                                                                    src="{{ asset('icons/trash.svg') }}"
+                                                                    alt="Delete Level"></button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 @endforeach
