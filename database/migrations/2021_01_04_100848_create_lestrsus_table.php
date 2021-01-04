@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeacherLevelStreamSubjectTable extends Migration
+class CreateLestrsusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateTeacherLevelStreamSubjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_level_stream_subject', function (Blueprint $table) {
+        Schema::create('lestrsus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
             $table->foreignId('level_id')->constrained()->onDelete('cascade');
             $table->foreignId('stream_id')->constrained()->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->datetime('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTeacherLevelStreamSubjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_level_stream_subject');
+        Schema::dropIfExists('lestrsus');
     }
 }
