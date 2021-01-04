@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if($subjects->count())
-                    <table class=" text-center border border-collapse border border-gray-600 table-auto w-full">
+                    <table class=" text-center border border-collapse border-gray-600 table-auto w-full">
                         <thead class="bg-gray-200">
                             <tr>
                                 <th class="border border-gray-600 px-3 py-2">ID</th>
