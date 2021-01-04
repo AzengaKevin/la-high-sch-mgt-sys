@@ -40,4 +40,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * User Role Relationship M : 1
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class)->withDefault([
+            'title' => 'Default',
+            'description' => 'The basic role, which means no powers over and resources, unless it is your own data'
+        ]);
+    }
 }
