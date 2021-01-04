@@ -53,9 +53,9 @@ Route::group([
         //Teacher Subjects
         Route::put('teachers/{teacher}/subjects', [\App\Http\Controllers\Admin\TeacherSubjectsController::class, 'update'])
             ->name('teachers.subjects.update');
-        //Teacher Levels
-        Route::post('teachers/{teacher}/levels', [\App\Http\Controllers\Admin\TeacherLevelsController::class, 'store'])
-            ->name('teachers.levels.store');
+        //Teacher Classes
+        Route::resource('teachers.lestrsus', TeacherLestrsuController::class)
+            ->only('store', 'destroy');
 });
 
 /*
@@ -114,4 +114,5 @@ Route::group([
         Route::patch('/me/profile/update', [\App\Http\Controllers\Teacher\ProfileController::class, 'update'])->name('me.profile.update');
         Route::patch('/me/password/update', PasswordController::class)->name('me.password.update');
         Route::get('/me/subjects', SubjectsController::class)->name('me.subjects.show');
+        Route::get('/me/classes', TeacherLestrsuController::class)->name('me.lestrsus.show');
 });

@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('teacher.me.subjects.show')" :active="request()->routeIs('teacher.me.subjects.show')">
                         {{ __('Subjects') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('teacher.me.lestrsus.show')" :active="request()->routeIs('teacher.me.lestrsus.show')">
+                        {{ __('Classes') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -76,6 +79,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('teacher.me.subjects.show')" :active="request()->routeIs('teacher.me.subjects.show')">
                 {{ __('Subjects') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('teacher.me.lestrsus.show')" :active="request()->routeIs('teacher.me.lestrsus.show')">
+                {{ __('Classes') }}
             </x-responsive-nav-link>
         </div>
 
