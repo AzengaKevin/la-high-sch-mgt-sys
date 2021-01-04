@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\Auth\Student\LoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -61,11 +60,4 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
                 ->middleware('auth');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
-
-Route::get('student/login', [LoginController::class, 'create'])->name('student.login')
-        ->middleware('guest');
-
-
-Route::post('student/login', [LoginController::class, 'store'])->name('student.login')
-    ->middleware('guest');        
+                ->name('logout');       
